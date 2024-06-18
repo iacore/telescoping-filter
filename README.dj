@@ -1,1 +1,7 @@
 Developed and tested with Zig 0.12.1.
+
+original C implementation from https://github.com/djslzx/telescoping-filter/
+
+## reading list
+
+https://en.wikipedia.org/wiki/MurmurHash
