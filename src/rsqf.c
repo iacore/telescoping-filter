@@ -5,12 +5,14 @@
 #include <assert.h>
 #include <string.h>
 #include <execinfo.h>
+#include <malloc.h>
 
 #include "murmur3.h"
 #include "macros.h"
 #include "rsqf.h"
 #include "bit_util.h"
 #include "set.h"
+#include "utaf.h"
 
 /**
  * Generate a 64-bit hash for the input word.
@@ -1250,6 +1252,10 @@ void test_insert_and_query() {
   set_deallocate(set, nset);
 }
 
+void print_rsqf_stats(FullTAF *filter) {
+  malloc_stats();
+}
+
 void test_mixed_insert_and_query_w_repeats() {
   printf("Testing %s...\n", __FUNCTION__);
   int nslots = 1 << 14;
@@ -1351,7 +1357,7 @@ void test_mixed_insert_and_query_w_repeats() {
   printf("FPs: %d (%f%%), RFPs: %d (%f%%)\n",
          fps, (double)fps/tot_queries, rfps, (double)rfps/tot_queries * 100);
   printf("FNs: %d (%f%%)\n", fns, (double)fns/tot_queries * 100);
-  // N/A: print_rsqf_stats(filter);
+  print_rsqf_stats(filter);
   rsqf_destroy(filter);
   printf("Done testing %s.\n", __FUNCTION__);
 }

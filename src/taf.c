@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <string.h>
 #include <execinfo.h>
+#include <malloc.h>
 
 #include "murmur3.h"
 #include "macros.h"
@@ -647,6 +648,7 @@ void print_taf_stats(TAF* filter) {
     printf(" %d: %d (%f%%)\n", i, sel_counts[i],
            100 * (double)sel_counts[i]/(double)filter->nslots);
   }
+  malloc_stats();
 }
 
 // Tests
