@@ -1373,6 +1373,7 @@ void test_template() {
 }
 
 int main() {
+#ifndef TIMEIT
   test_calc_quot();
   test_calc_rem();
   test_select_runend_empty_filter();
@@ -1405,6 +1406,7 @@ int main() {
   test_raw_insert_zero_offset();
   test_insert_repeated();
   test_insert_and_query();
+#endif
   test_mixed_insert_and_query_w_repeats();
 }
 #endif // TEST_RSQFv

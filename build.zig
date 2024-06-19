@@ -2,8 +2,8 @@ const std = @import("std");
 
 pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
-
     const optimize = b.standardOptimizeOption(.{});
+    const timeit = b.option(bool, "timeit", "only time performance on rsqf, taf, utaf");
 
     // zig fmt: off
     const exes = .{
@@ -28,6 +28,9 @@ pub fn build(b: *std.Build) void {
         });
         exe.linkLibC();
         exe.defineCMacro(opts.test_macro, "1");
+        if (timeit orelse false) {
+            exe.defineCMacro("TIMEIT", "");
+        }
         exe.addCSourceFiles(.{ .files = &opts.c_files, .flags = c_flags, .root = b.path("src") });
 
         b.installArtifact(exe);

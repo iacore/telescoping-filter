@@ -1294,6 +1294,7 @@ void test_template() {
 }
 
 int main() {
+#ifndef TIMEIT
   test_calc_rem();
   test_add_block();
   test_add_block_no_clobber();
@@ -1309,6 +1310,7 @@ int main() {
   test_shift_sels_multi_block();
 //  test_insert_and_query();
 //  test_insert_and_query_w_repeats();
+#endif
   test_mixed_insert_and_query_w_repeats();
 }
 #endif // TEST_TAF

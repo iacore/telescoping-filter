@@ -127,5 +127,27 @@ max mmap bytes   =   27709440
 Done testing test_mixed_insert_and_query_w_repeats.
 ```
 
-utaf uses 2.61x memory of taf  
-utaf has basically no repeated false positives (RFPs)  
+benchmark:
+
+```
+❯ zig build -Doptimize=ReleaseFast -Dtimeit
+❯ for f in taf utaf rsqf
+      hyperfine zig-out/bin/$f
+  end
+Benchmark 1: zig-out/bin/taf
+  Time (mean ± σ):     13.641 s ±  0.463 s    [User: 13.600 s, System: 0.007 s]
+  Range (min … max):   13.222 s … 14.528 s    10 runs
+ 
+Benchmark 1: zig-out/bin/utaf
+  Time (mean ± σ):      7.220 s ±  0.046 s    [User: 7.204 s, System: 0.002 s]
+  Range (min … max):    7.145 s …  7.273 s    10 runs
+ 
+Benchmark 1: zig-out/bin/rsqf
+  Time (mean ± σ):      7.195 s ±  0.043 s    [User: 7.179 s, System: 0.002 s]
+  Range (min … max):    7.138 s …  7.264 s    10 runs
+
+```
+
+utaf uses 2.61x memory of taf\
+utaf has basically no repeated false positives (RFPs)\
+utaf performs on par with rsqf\
