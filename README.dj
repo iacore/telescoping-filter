@@ -30,6 +30,24 @@ test configuration:
   double load = 0.95;
 ```
 
+rsqf:
+
+```
+Querying set and filter...
+Test results:
+FPs: 57955 (0.000372%), RFPs: 52184 (0.033529%)
+FNs: 0 (0.000000%)
+Arena 0:
+system bytes     =    2056192
+in use bytes     =    1994976
+Total (incl. mmap):
+system bytes     =   14508032
+in use bytes     =   14446816
+max mmap regions =          1
+max mmap bytes   =   12451840
+Done testing test_mixed_insert_and_query_w_repeats.
+```
+
 taf:
 
 ```
