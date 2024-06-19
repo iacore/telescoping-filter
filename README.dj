@@ -6,14 +6,14 @@ src/constants.h    |
 src/ext.h          | 
 src/macros.h       | 
 src/remainder.h    | 
-src/arcd.h         | some form of compression
+src/arcd.h         | some kind of compression routines
 src/bit_util.{c,h} | 
-src/exaf.{c,h}     | 
+src/set.{c,h}      | hash set (test code)
 src/murmur3.{c,h}  | MurmurHash3
 src/rsqf.{c,h}     | 
-src/set.{c,h}      | 
-src/taf.{c,h}      | 
 src/utaf.{c,h}     | 
+src/taf.{c,h}      | 
+src/exaf.{c,h}     | 
 
 ## reading list
 
