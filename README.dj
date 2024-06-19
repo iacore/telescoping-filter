@@ -2,10 +2,16 @@ Developed and tested with Zig 0.12.1.
 
 original C implementation from https://github.com/djslzx/telescoping-filter/
 
-src/constants.h    | 
+build with `zig build -Doptimize=ReleaseFast`\
+test with `zig-out/bin/*`\
+test all with `zig build test`\
+
+## ---c  .   .   .
+
+src/constants.h    | #define REM_SIZE
+src/remainder.h    | REM_SIZE -> rem_t
+src/macros.h       | macros
 src/ext.h          | 
-src/macros.h       | 
-src/remainder.h    | 
 src/arcd.h         | some kind of compression routines
 src/bit_util.{c,h} | 
 src/set.{c,h}      | hash set (test code)
