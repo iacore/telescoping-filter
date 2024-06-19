@@ -2,6 +2,19 @@ Developed and tested with Zig 0.12.1.
 
 original C implementation from https://github.com/djslzx/telescoping-filter/
 
+src/constants.h    | 
+src/ext.h          | 
+src/macros.h       | 
+src/remainder.h    | 
+src/arcd.h         | some form of compression
+src/bit_util.{c,h} | 
+src/exaf.{c,h}     | 
+src/murmur3.{c,h}  | MurmurHash3
+src/rsqf.{c,h}     | 
+src/set.{c,h}      | 
+src/taf.{c,h}      | 
+src/utaf.{c,h}     | 
+
 ## reading list
 
 https://en.wikipedia.org/wiki/MurmurHash

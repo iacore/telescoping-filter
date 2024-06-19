@@ -5,17 +5,19 @@ pub fn build(b: *std.Build) void {
 
     const optimize = b.standardOptimizeOption(.{});
 
+    // zig fmt: off
     const exes = .{
         .{ .name = "rsqf", .test_macro = "TEST_RSQF", .c_files = .{ "rsqf.c", "murmur3.c", "bit_util.c", "set.c" } },
+        .{ .name = "taf",  .test_macro = "TEST_TAF",  .c_files = .{ "taf.c",  "arcd.c", "murmur3.c", "bit_util.c", "set.c" } },
+        .{ .name = "utaf", .test_macro = "TEST_UTAF", .c_files = .{ "utaf.c", "murmur3.c", "bit_util.c", "set.c" } },
         .{ .name = "exaf", .test_macro = "TEST_EXAF", .c_files = .{ "exaf.c", "arcd.c", "murmur3.c", "bit_util.c", "set.c" } },
-        .{ .name = "utaf", .test_macro = "TEST_UTAF", .c_files = .{ "utaf.c", "arcd.c", "murmur3.c", "bit_util.c", "set.c" } },
-        .{ .name = "taf", .test_macro = "TEST_TAF", .c_files = .{ "taf.c", "arcd.c", "murmur3.c", "bit_util.c", "set.c" } },
         .{ .name = "arcd", .test_macro = "TEST_ARCD", .c_files = .{"arcd.c"} },
     };
+    // zig fmt: on
 
     const test_all_step = b.step("test", "test all");
 
-    const c_flags = &.{"-lm", "-g", "-O0", "-Wall"};
+    const c_flags = &.{ "-lm", "-g", "-O0", "-Wall" };
 
     inline for (exes) |opts| {
         const exe = b.addExecutable(.{
