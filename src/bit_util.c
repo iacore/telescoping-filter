@@ -7,7 +7,7 @@
 
 // Returns the trailing zero count of val
 int tzcnt(uint64_t val) {
-  asm("tzcnt %[val], %[val]"
+  __asm__("tzcnt %[val], %[val]"
   : [val] "+r" (val)
   :
   : "cc");
@@ -16,7 +16,7 @@ int tzcnt(uint64_t val) {
 
 // Returns the number of 1s in val
 int popcnt(uint64_t val) {
-  asm("popcnt %[val], %[val]"
+  __asm__("popcnt %[val], %[val]"
       : [val] "+r" (val)
       :
       : "cc");
@@ -27,7 +27,7 @@ int popcnt(uint64_t val) {
 uint64_t bitrank(uint64_t val, uint64_t pos) {
   assert(pos >= 0 && pos < 64 && "pos should be in [0, 63]");
   val &= ((2ull << pos) - 1); // 2^(pos+1) - 1
-  asm("popcnt %[val], %[val]"
+  __asm__("popcnt %[val], %[val]"
       : [val] "+r" (val)
       :
       : "cc");
@@ -158,10 +158,10 @@ static inline uint64_t select64(uint64_t x, int k) {
 uint64_t bitselect(uint64_t val, uint64_t rank) {
 #ifdef __SSE4_2_
   uint64_t i = 1ull << rank; // i = 2^rank
-  asm("pdep %[val], %[mask], %[val]"
+  __asm__("pdep %[val], %[mask], %[val]"
       : [val] "+r" (val)
       : [mask] "r" (i));
-  asm("tzcnt %[bit], %[index]"
+  __asm__("tzcnt %[bit], %[index]"
       : [index] "=r" (i)
       : [bit] "g" (val)
       : "cc");

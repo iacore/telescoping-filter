@@ -5,6 +5,8 @@
 #ifndef EXAF_CONSTANTS_H
 #define EXAF_CONSTANTS_H
 
+#include <stddef.h>
+
 /** Size of a remainder in the filter
  * Must be power of 2 since mod is taken using & */
 #define REM_SIZE 8

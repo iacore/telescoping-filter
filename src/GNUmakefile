@@ -4,6 +4,8 @@ LD=ld
 #CC = clang	
 
 CFLAGS += -lm
+CFLAGS += -std=c99
+CFLAGS += -D_DEFAULT_SOURCE
 CFLAGS += -fsanitize=undefined
 #CFLAGS += -fsanitize=undefined-abort
 
