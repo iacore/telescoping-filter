@@ -18,3 +18,90 @@ src/utaf.{c,h}     |
 ## reading list
 
 https://en.wikipedia.org/wiki/MurmurHash
+
+## findings
+
+### if you have the memory, use utaf
+
+test configuration:
+
+```
+  int nslots = 1 << 14;
+  double load = 0.95;
+```
+
+taf:
+
+```
+Querying set and filter...
+Test results:
+FPs: 38083 (0.000245%), RFPs: 30204 (0.019406%)
+FNs: 0 (0.000000%)
+TAF stats:
+Hash selector counts:
+ 0: 14664 (89.153696%)
+ 1: 1556 (9.460117%)
+ 2: 202 (1.228113%)
+ 3: 24 (0.145914%)
+ 4: 2 (0.012160%)
+ 5: 0 (0.000000%)
+Arena 0:
+system bytes     =    1081344
+in use bytes     =     957280
+Total (incl. mmap):
+system bytes     =   14921728
+in use bytes     =   14797664
+max mmap regions =          4
+max mmap bytes   =   13840384
+Done testing test_mixed_insert_and_query_w_repeats.
+```
+
+utaf:
+
+```
+Querying set and filter...
+Test results:
+FPs: 3658 (0.000024%), RFPs: 58 (0.000037%)
+FNs: 0 (0.000000%)
+FullTAF stats:
+Hash selector counts:
+ 0: 11606 (70.561770%)
+ 1: 3282 (19.953794%)
+ 2: 1050 (6.383755%)
+ 3: 363 (2.206955%)
+ 4: 103 (0.626216%)
+ 5: 34 (0.206712%)
+ 6: 0 (0.000000%)
+ 7: 1 (0.006080%)
+ 8: 0 (0.000000%)
+ 9: 2 (0.012160%)
+ 10: 0 (0.000000%)
+ 11: 1 (0.006080%)
+ 12: 0 (0.000000%)
+ 13: 0 (0.000000%)
+ 14: 1 (0.006080%)
+ 15: 0 (0.000000%)
+ 16: 0 (0.000000%)
+ 17: 1 (0.006080%)
+ 18: 0 (0.000000%)
+ 19: 0 (0.000000%)
+ 20: 0 (0.000000%)
+ 21: 0 (0.000000%)
+ 22: 0 (0.000000%)
+ 23: 2 (0.012160%)
+ 24: 1 (0.006080%)
+ 25: 0 (0.000000%)
+ 26: 0 (0.000000%)
+Arena 0:
+system bytes     =    2822144
+in use bytes     =    2577952
+Total (incl. mmap):
+system bytes     =   30531584
+in use bytes     =   30287392
+max mmap regions =          7
+max mmap bytes   =   27709440
+Done testing test_mixed_insert_and_query_w_repeats.
+```
+
+utaf uses 2.61x memory of taf  
+utaf has basically no repeated false positives (RFPs)  
