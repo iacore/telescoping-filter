@@ -27,6 +27,57 @@ https://en.wikipedia.org/wiki/MurmurHash
 
 ## findings
 
+### RSQF
+
+the name rank select refers to bitrank and bitselect
+there's nothing fancy about this filter
+it's just the usual QF chopped into blocks of 64
+RANK and SELECT are used to find occupied and runend
+
+### utaf
+
+utaf is like RSQF but the nblocks can grow, no it never runs out of space.
+
+![](utaf_h)
+
+the top line-like thing is murmurhash(elt), the hash result
+
+quot: the first filter.k bits of the hash result decides which slot the data is located.
+rem: disambiguiation. tells if the elt is in the filter or not (may be false positive). like any QF, only the current run is scanned.
+selector: changes what rem is. on false positive, selector++, rem no longer FP. this's called adapt.
+
+to tell false positive and adapt, the inserted elements are stored too.
+
+maybe hash set is faster...
+
+hash set is indeed faster!
+
+hashset_lookup + filter_lookup:
+
+```
+❯ hyperfine zig-out/bin/utaf
+Benchmark 1: zig-out/bin/utaf
+  Time (mean ± σ):     13.043 s ±  0.145 s    [User: 12.999 s, System: 0.007 s]
+  Range (min … max):   12.915 s … 13.304 s    10 runs
+```
+
+filter_lookup:
+
+```
+❯ hyperfine zig-out/bin/utaf
+Benchmark 1: zig-out/bin/utaf
+  Time (mean ± σ):     11.766 s ±  0.263 s    [User: 11.730 s, System: 0.006 s]
+  Range (min … max):   11.214 s … 12.169 s    10 runs
+``` 
+
+*to tell false positive and adapt, the inserted elements are stored too.* hashset takes up less space and is faster. fml
+
+### murmurhash? more like bitshifthash
+
+MurmurHash3_x64_128 becomes embarassingly simple when n < 16
+we have n = 4
+...
+
 ### if you have the memory, use utaf
 
 test configuration:

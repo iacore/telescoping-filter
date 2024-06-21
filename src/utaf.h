@@ -27,7 +27,7 @@ typedef uint64_t elt_t;
 
 #ifndef TAF_H
 typedef struct remote_elt_t {
-  uint64_t elt;
+  elt_t elt;
   uint64_t hash;
 } Remote_elt ;
 #endif
