@@ -78,7 +78,7 @@ MurmurHash3_x64_128 becomes embarassingly simple when n < 16
 we have n = 4
 ...
 
-### if you have the memory, use utaf
+### sloppy benchmark
 
 test configuration:
 
@@ -198,7 +198,3 @@ Benchmark 1: zig-out/bin/rsqf
   Range (min … max):    7.138 s …  7.264 s    10 runs
 
 ```
-
-utaf uses 2.61x memory of taf\
-utaf has basically no repeated false positives (RFPs)\
-utaf performs on par with rsqf\
